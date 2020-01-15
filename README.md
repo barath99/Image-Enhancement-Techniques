@@ -1,2 +1,2 @@
-# Image-Enhancement-Techniques
-This primarily focuses on techniques for low-light images
+# Image-Enhancement-techniques
+Concentrates on images shot at low-light background
