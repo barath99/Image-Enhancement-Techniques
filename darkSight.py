@@ -21,8 +21,10 @@ from PIL import ImageFilter
 
 # In[3]:
 
-
+#change this to the dataset directory
 root_dir = 'D:/darkSight/datasets_darkSight/images/'
+
+#change this to directory in which images are processed
 save_dir = 'D:/darkSight/'
 
 
@@ -34,6 +36,9 @@ save_dir = 'D:/darkSight/'
 originalb = plt.imread(root_dir + os.listdir(root_dir)[5])
 darkb = plt.imread(root_dir + os.listdir(root_dir)[6])
 
+
+#since the image size is huge its dimension is reduced
+#this may or may not be present depending on the results
 scale_percent = 50 # percent of original size
 width = int(darkb.shape[1] * scale_percent / 100)
 height = int(darkb.shape[0] * scale_percent / 100)
@@ -75,6 +80,8 @@ img = dark
 
 hist,bins = np.histogram(img.flatten(),256,[0,256])
 
+
+#cummulative distribution is plotted
 cdf = hist.cumsum()
 cdf_normalized = cdf * hist.max()/ cdf.max()
 
@@ -121,7 +128,7 @@ imgm = [[], [], []]
 
 # In[15]:
 
-
+#histogram equalization 
 rm, gm, bm = cv2.equalizeHist(r), cv2.equalizeHist(g), cv2.equalizeHist(b)
 imgm[0], imgm[1], imgm[2] = rm.T, gm.T, bm.T
 
@@ -154,7 +161,7 @@ plt.imshow(limgm)
 
 # In[19]:
 
-
+#the images are further scaled to speed up the processing
 scale_percent = 20 # percent of original size
 width = int(dark.shape[1] * scale_percent / 100)
 height = int(dark.shape[0] * scale_percent / 100)
@@ -185,7 +192,7 @@ plt.imshow(gamma_res)
 
 # In[24]:
 
-
+#this saves the the results with various gamma value
 plt.imsave(save_dir + 'gamma_enhancememt_dark.png', gamma_res)
 
 
